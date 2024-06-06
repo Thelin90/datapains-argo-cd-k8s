@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: trino
+  namespace: argocd
+spec:
+  destination:
+    namespace: trino
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=false
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+  sources:
+    - repoURL: https://github.com/Thelin90/datapains-trino-k8s.git
+      targetRevision: main
+      ref: datapains-trino-k8s
+    - repoURL: https://trinodb.github.io/charts/
+      targetRevision: 0.21.0
+      chart: trino
+      helm:
+        valueFiles:
+          - $datapains-trino-k8s/tools/k8s/helm/trino/local/values.yaml

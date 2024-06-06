@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metastore
+  namespace: argocd
+spec:
+  destination:
+    namespace: metastore
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+  source:
+    path: tools/k8s/vanilla/local/metastore
+    repoURL: https://github.com/Thelin90/datapains-trino-k8s
+    targetRevision: main
