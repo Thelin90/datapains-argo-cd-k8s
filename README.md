@@ -68,6 +68,10 @@ Create your secret based on your github `SSH` key.
  make create-secret REPO_URL=git@github.com:Thelin90/datapains-trino-k8s.git SECRET_NAME=datapains-trino-k8s-creds SSH_KEY_PATH=<path-to-id_rsa>
  ```
 
+`NOTE!`
+
+Remember to build the hive metastore image, instructions [here](https://github.com/Thelin90/datapains-trino-k8s/tree/main?tab=readme-ov-file#docker).
+
 Now deploy the metastore:
 ```bash
 make apply-argocd-app REPO_NAME=datapains-trino-k8s APP_NAME=metastore
