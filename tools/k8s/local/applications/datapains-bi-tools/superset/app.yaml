@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: superset
+  namespace: argocd
+spec:
+  destination:
+    namespace: superset
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=false
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+  sources:
+    - repoURL: https://github.com/Thelin90/datapains-bi-tools.git
+      targetRevision: main
+      ref: datapains-bi-tools
+    - repoURL: http://apache.github.io/superset/
+      targetRevision: 0.12.11
+      chart: superset
+      helm:
+        valueFiles:
+          - $datapains-bi-tools/superset/tools/k8s/local/values.yaml

@@ -83,3 +83,19 @@ make apply-argocd-app REPO_NAME=datapains-trino-k8s APP_NAME=trino
 ```
 
 All set!
+
+### Apache Superset
+
+```bash
+make create-secret REPO_URL=git@github.com:Thelin90/datapains-bi-tools.git SECRET_NAME=datapains-bi-tools-creds SSH_KEY_PATH=<path-to-id_rsa>
+```
+
+```bash
+make apply-argocd-app REPO_NAME=datapains-bi-tools APP_NAME=superset
+```
+
+`Port Forward`
+
+```bash
+kubectl port-forward svc/superset 8088:8088 -n superset
+```
