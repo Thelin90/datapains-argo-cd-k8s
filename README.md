@@ -115,9 +115,5 @@ make apply-argocd-app REPO_NAME=datapains-airbyte APP_NAME=airbyte
 
 `Note deployment can take a few minutes, check in argocd UI!`.
 
-```bash
-kubectl port-forward svc/superset 8088:8088 -n superset
-```
-
 #### Access UI
 `UI` is now accessible via: wwww.localhost:32767
