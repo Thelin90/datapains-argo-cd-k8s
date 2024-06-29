@@ -1,5 +1,8 @@
 # datapains-argo-cd-k8s
 
+## Workshops
+
+### Trino on K8S
 This workshop is a continuation off: [Deploy Trino on Kubernetes: Helm Setup with Hive Metastore & MinIO Integration](https://medium.com/@simon.thelin90/trino-minio-metastore-workshop-kubernetes-dbede7b1eca1)
 
 [Medium Article](https://medium.com/@simon.thelin90/second-edition-argocd-deploy-trino-on-kubernetes-helm-setup-with-hive-metastore-minio-768e51fe84f7) Covering this repo.
