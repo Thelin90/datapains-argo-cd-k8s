@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: airbyte
+  namespace: argocd
+spec:
+  destination:
+    namespace: airbyte
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=false
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+  sources:
+    - repoURL: https://github.com/Thelin90/datapains-airbyte.git
+      targetRevision: main
+      ref: datapains-airbyte
+    - repoURL: https://airbytehq.github.io/helm-charts
+      chart: airbyte
+      targetRevision: 0.101.2
+      helm:
+        valueFiles:
+          - $datapains-airbyte/tools/k8s/local/values.yaml

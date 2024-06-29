@@ -102,3 +102,22 @@ make apply-argocd-app REPO_NAME=datapains-bi-tools APP_NAME=superset
 ```bash
 kubectl port-forward svc/superset 8088:8088 -n superset
 ```
+
+### Airbyte
+
+```bash
+make create-secret REPO_URL=git@github.com:Thelin90/datapains-airbyte.git SECRET_NAME=datapains-airbyte-creds SSH_KEY_PATH=<path-to-id_rsa>
+```
+
+```bash
+make apply-argocd-app REPO_NAME=datapains-airbyte APP_NAME=airbyte
+```
+
+`Note deployment can take a few minutes, check in argocd UI!`.
+
+```bash
+kubectl port-forward svc/superset 8088:8088 -n superset
+```
+
+#### Access UI
+`UI` is now accessible via: wwww.localhost:32767
