@@ -117,3 +117,15 @@ make apply-argocd-app REPO_NAME=datapains-airbyte APP_NAME=airbyte
 
 #### Access UI
 `UI` is now accessible via: wwww.localhost:32767
+
+### Spark Operator
+
+First add `spark` namespace.
+
+```bash
+kubectl create namespace spark
+```
+
+```bash
+make apply-argocd-app REPO_NAME=datapains-spark-operator APP_NAME=spark-operator
+```
