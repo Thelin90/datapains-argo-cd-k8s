@@ -21,10 +21,10 @@ spec:
           - spark
         serviceAccounts:
           spark:
-            create: true
+            create: false
             name: spark
           sparkoperator:
-            create: true
+            create: false
             name: spark-operator
         rbac:
           createClusterRole: true
