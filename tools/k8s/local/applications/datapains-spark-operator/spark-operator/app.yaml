@@ -1,3 +1,4 @@
+# https://github.com/kubeflow/spark-operator/issues/1894
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
