@@ -30,7 +30,7 @@ helm repo add argo https://argoproj.github.io/argo-helm
 helm search repo argo-cd
 ```
 
-Time of writing this using `7.1.0`.
+Time of writing this using `7.3.4`.
 
 ## Core
 ```bash

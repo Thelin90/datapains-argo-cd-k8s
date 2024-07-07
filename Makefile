@@ -1,6 +1,6 @@
 export APP := datapains
 export NAMESPACE := argocd
-export VERSION := 7.1.0
+export VERSION := 7.3.4
 export TOOLS_PATH := tools/k8s
 export ENVIRONMENT := local
 export SCRIPT_PATH := tools/scripts
@@ -17,7 +17,7 @@ delete-local-argocd:
 .PHONY: create-k8s-secret
 create-k8s-secret:
 	chmod +x tools/scripts/*.sh
-	./{SCRIPT_PATH}/create_k8s_secret.sh $(SECRET_NAME) {NAMESPACE} 
+	./{SCRIPT_PATH}/create_k8s_secret.sh $(SECRET_NAME) $(NAMESPACE)
 
 .PHONY: create-secret
 create-secret:
