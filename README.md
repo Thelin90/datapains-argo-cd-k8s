@@ -129,3 +129,18 @@ kubectl create namespace spark
 ```bash
 make apply-argocd-app REPO_NAME=datapains-spark-operator APP_NAME=spark-operator
 ```
+
+### Argo Workflow
+
+```bash
+make create-secret REPO_URL=git@github.com:Thelin90/datapains-argo-workflow.git SECRET_NAME=datapains-argo-workflow-creds SSH_KEY_PATH=<path-to-id_rsa>
+```
+
+```bash
+make apply-argocd-app REPO_NAME=datapains-argo-workflow APP_NAME=argo-workflow
+```
+
+`Note deployment can take a few minutes, check in argocd UI!`.
+
+#### Access UI
+`UI` is now accessible via: wwww.localhost:32767

@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-workflow
+  namespace: argocd
+spec:
+  destination:
+    namespace: argo
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=false
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+  source:
+    path: tools/k8s/local/
+    repoURL: https://github.com/Thelin90/datapains-argo-workflow
+    targetRevision: main
