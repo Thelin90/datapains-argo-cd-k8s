@@ -13,7 +13,7 @@ spec:
     chart: kube-prometheus-stack
     targetRevision: 62.3.0
     helm:
-      releaseName: monitoring
+      releaseName: kube-prometheus-stack
       valuesObject:
         grafana:
           enabled: false
