@@ -5,11 +5,11 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    server: "https://kubernetes.default.svc"
-    namespace: prometheus
+    server: https://kubernetes.default.svc
+    namespace: monitoring
   project: default
   sources:
-  - repoURL: 'https://prometheus-community.github.io/helm-charts'
+  - repoURL: https://prometheus-community.github.io/helm-charts
     chart: kube-prometheus-stack
     targetRevision: 62.7.0
     helm:
@@ -17,8 +17,9 @@ spec:
       valuesObject:
         grafana:
           enabled: false
-        nodeExporter:
-          enabled: false
+        prometheusOperator:
+          kubeletService:
+            enabled: false
   syncPolicy:
     automated:
       prune: true
