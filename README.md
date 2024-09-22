@@ -134,6 +134,12 @@ make apply-argocd-app REPO_NAME=datapains-monitoring APP_NAME=prometheus
 
 `Note deployment can take a few minutes, check in argocd UI!`.
 
+### Example Prometheus App
+
+```bash
+make apply-argocd-app REPO_NAME=datapains-monitoring APP_NAME=example-application
+```
+
 ## Spark Operator
 
 First add `spark` namespace.
