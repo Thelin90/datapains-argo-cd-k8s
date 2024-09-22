@@ -55,10 +55,81 @@ You can now login into the `UI` with:
 
 ## Applications
 
-We have two applications we want to deploy in this workshop.
+### Airbyte
 
-1) metastore
-2) trino
+```bash
+make create-secret REPO_URL=git@github.com:Thelin90/datapains-airbyte.git SECRET_NAME=datapains-airbyte-creds SSH_KEY_PATH=<path-to-id_rsa>
+```
+
+```bash
+make apply-argocd-app REPO_NAME=datapains-airbyte APP_NAME=airbyte
+```
+
+`Note deployment can take a few minutes, check in argocd UI!`.
+
+#### Access UI
+`UI` is now accessible via: wwww.localhost:32767
+
+### Apache Superset
+
+```bash
+make create-secret REPO_URL=git@github.com:Thelin90/datapains-bi-tools.git SECRET_NAME=datapains-bi-tools-creds SSH_KEY_PATH=<path-to-id_rsa>
+```
+
+```bash
+make apply-argocd-app REPO_NAME=datapains-bi-tools APP_NAME=superset
+```
+
+`Port Forward`
+
+```bash
+kubectl port-forward svc/superset 8088:8088 -n superset
+```
+
+### Argo Workflow
+
+```bash
+make create-secret REPO_URL=git@github.com:Thelin90/datapains-argo-workflow.git SECRET_NAME=datapains-argo-workflow-creds SSH_KEY_PATH=<path-to-id_rsa>
+```
+
+```bash
+make apply-argocd-app REPO_NAME=datapains-argo-workflow APP_NAME=argo-workflow
+```
+
+`Note deployment can take a few minutes, check in argocd UI!`.
+
+#### Access UI
+`UI` is now accessible via: wwww.localhost:32767
+
+### Prometheus Community
+
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+```
+
+```bash
+helm repo update
+```
+
+### Prometheus Operator
+
+```bash
+make apply-argocd-app REPO_NAME=datapains-prometheus APP_NAME=prometheus-operator
+```
+
+`Note deployment can take a few minutes, check in argocd UI!`.
+
+### Spark Operator
+
+First add `spark` namespace.
+
+```bash
+kubectl create namespace spark
+```
+
+```bash
+make apply-argocd-app REPO_NAME=datapains-spark-operator APP_NAME=spark-operator
+```
 
 ### DataPains Trino K8S
 
@@ -84,63 +155,3 @@ Now deploy trino, once you see it being healthy in ArgoCD UI.
 ```bash
 make apply-argocd-app REPO_NAME=datapains-trino-k8s APP_NAME=trino
 ```
-
-All set!
-
-### Apache Superset
-
-```bash
-make create-secret REPO_URL=git@github.com:Thelin90/datapains-bi-tools.git SECRET_NAME=datapains-bi-tools-creds SSH_KEY_PATH=<path-to-id_rsa>
-```
-
-```bash
-make apply-argocd-app REPO_NAME=datapains-bi-tools APP_NAME=superset
-```
-
-`Port Forward`
-
-```bash
-kubectl port-forward svc/superset 8088:8088 -n superset
-```
-
-### Airbyte
-
-```bash
-make create-secret REPO_URL=git@github.com:Thelin90/datapains-airbyte.git SECRET_NAME=datapains-airbyte-creds SSH_KEY_PATH=<path-to-id_rsa>
-```
-
-```bash
-make apply-argocd-app REPO_NAME=datapains-airbyte APP_NAME=airbyte
-```
-
-`Note deployment can take a few minutes, check in argocd UI!`.
-
-#### Access UI
-`UI` is now accessible via: wwww.localhost:32767
-
-### Spark Operator
-
-First add `spark` namespace.
-
-```bash
-kubectl create namespace spark
-```
-
-```bash
-make apply-argocd-app REPO_NAME=datapains-spark-operator APP_NAME=spark-operator
-```
-
-### Argo Workflow
-
-```bash
-make create-secret REPO_URL=git@github.com:Thelin90/datapains-argo-workflow.git SECRET_NAME=datapains-argo-workflow-creds SSH_KEY_PATH=<path-to-id_rsa>
-```
-
-```bash
-make apply-argocd-app REPO_NAME=datapains-argo-workflow APP_NAME=argo-workflow
-```
-
-`Note deployment can take a few minutes, check in argocd UI!`.
-
-#### Access UI
-`UI` is now accessible via: wwww.localhost:32767
