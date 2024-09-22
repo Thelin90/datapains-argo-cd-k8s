@@ -111,10 +111,13 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo update
 ```
 
-### Prometheus Operator
+### kube-prometheus-stack
+
+* prometheus operator
+* grafana
 
 ```bash
-make apply-argocd-app REPO_NAME=datapains-prometheus APP_NAME=prometheus-operator
+make apply-argocd-app REPO_NAME=datapains-monitoring APP_NAME=kube-prometheus-stack
 ```
 
 `Note deployment can take a few minutes, check in argocd UI!`.
