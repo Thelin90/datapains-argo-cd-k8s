@@ -53,9 +53,9 @@ You can now login into the `UI` with:
 * user: admin
 * password: <output from get secret above>
 
-## Applications
+# Applications
 
-### Airbyte
+# Airbyte
 
 ```bash
 make create-secret REPO_URL=git@github.com:Thelin90/datapains-airbyte.git SECRET_NAME=datapains-airbyte-creds SSH_KEY_PATH=<path-to-id_rsa>
@@ -67,10 +67,10 @@ make apply-argocd-app REPO_NAME=datapains-airbyte APP_NAME=airbyte
 
 `Note deployment can take a few minutes, check in argocd UI!`.
 
-#### Access UI
+## Access UI
 `UI` is now accessible via: wwww.localhost:32767
 
-### Apache Superset
+# Apache Superset
 
 ```bash
 make create-secret REPO_URL=git@github.com:Thelin90/datapains-bi-tools.git SECRET_NAME=datapains-bi-tools-creds SSH_KEY_PATH=<path-to-id_rsa>
@@ -86,7 +86,7 @@ make apply-argocd-app REPO_NAME=datapains-bi-tools APP_NAME=superset
 kubectl port-forward svc/superset 8088:8088 -n superset
 ```
 
-### Argo Workflow
+# Argo Workflow
 
 ```bash
 make create-secret REPO_URL=git@github.com:Thelin90/datapains-argo-workflow.git SECRET_NAME=datapains-argo-workflow-creds SSH_KEY_PATH=<path-to-id_rsa>
@@ -98,10 +98,10 @@ make apply-argocd-app REPO_NAME=datapains-argo-workflow APP_NAME=argo-workflow
 
 `Note deployment can take a few minutes, check in argocd UI!`.
 
-#### Access UI
+## Access UI
 `UI` is now accessible via: wwww.localhost:32767
 
-### Prometheus Community
+# Prometheus Community Helm Chart
 
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -111,7 +111,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo update
 ```
 
-### kube-prometheus-stack
+## kube-prometheus-stack
 
 * prometheus operator
 * grafana
@@ -122,7 +122,19 @@ make apply-argocd-app REPO_NAME=datapains-monitoring APP_NAME=kube-prometheus-st
 
 `Note deployment can take a few minutes, check in argocd UI!`.
 
-### Spark Operator
+## Prometheus
+
+```bash
+make create-secret REPO_URL=git@github.com:Thelin90/datapains-prometheus-k8s.git SECRET_NAME=datapains-prometheus-k8s-creds SSH_KEY_PATH=<path-to-id_rsa>
+```
+
+```bash
+make apply-argocd-app REPO_NAME=datapains-monitoring APP_NAME=prometheus
+```
+
+`Note deployment can take a few minutes, check in argocd UI!`.
+
+## Spark Operator
 
 First add `spark` namespace.
 
@@ -134,7 +146,7 @@ kubectl create namespace spark
 make apply-argocd-app REPO_NAME=datapains-spark-operator APP_NAME=spark-operator
 ```
 
-### DataPains Trino K8S
+## DataPains Trino K8S
 
 We will deploy trino through argocd, the repo we have available on [datapains-trino-k8s](https://github.com/Thelin90/datapains-trino-k8s)
 
