@@ -1,11 +1,8 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus
+  name: kube-prometheus-stack
   namespace: argocd
-  annotations:
-    notifications.argoproj.io/subscribe.on-deployed-github.pushover: ui6cxf78gwxa6n93zkwddw1g8s3yio
-    argocd.argoproj.io/manifest-generate-paths: /kubernetes/apps/monitoring/kube-prometheus-stack
 spec:
   destination:
     server: "https://kubernetes.default.svc"
@@ -19,6 +16,8 @@ spec:
       releaseName: kube-prometheus-stack
       valuesObject:
         grafana:
+          enabled: false
+        nodeExporter:
           enabled: false
   syncPolicy:
     automated:
