@@ -16,7 +16,7 @@ spec:
       releaseName: kube-prometheus-stack
       valuesObject:
         grafana:
-          enabled: false
+          enabled: true
         prometheus-node-exporter:
           hostRootFsMount:
             enabled: false
